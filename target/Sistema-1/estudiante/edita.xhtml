@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>America</title>
+    </h:head>
+    <body>
+        <ui:composition template="./../resources/templates/plantilla.xhtml">
+            <ui:define name="content">
+                <b:panel title="Estudiante" look="primary">
+                    <h:form id="editaEstudianteForm">
+                        <!-- La fila del idEstudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Identificación"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="cedula"
+                                             id="idEstudiante"
+                                             required="true"
+                                             value="#{estudianteController.idEstudiante}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="idEstudiante"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila del nombre del estudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Nombre"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Nombre"
+                                             id="nombre"
+                                             required="true"
+                                             value="#{estudianteController.nombre}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="nombre"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila del primer apellido del estudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Primer apellido"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Primer apellido"
+                                             id="apellido1"
+                                             required="true"
+                                             value="#{estudianteController.apellido1}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="apellido1"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila del segundo apellido del estudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Segundo apellido"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Segundo apellido"
+                                             id="apellido2"
+                                             value="#{estudianteController.apellido2}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="apellido2"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila de la fecha de nacimiento del estudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Fecha de nacimiento"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:datepicker id="fechaNaci"
+                                              required="true"
+                                              requiredMessage="Debe poner una fecha"
+                                              value="#{estudianteController.fechaNaci}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="fechaNaci"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila de la fecha de ingreso a la U del estudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Fecha de ingreso"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:datepicker id="fechaIngr"
+                                              required="true"
+                                              requiredMessage="Debe poner una fecha"
+                                              value="#{estudianteController.fechaIngr}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="fechaIngr"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila del género del estudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Género"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:panelGrid size="" columns="2">
+                                    <b:radiobutton value="#{estudianteController.genero}"
+                                                   itemLabel="Masculino"
+                                                   itemValue="M"/>
+                                    <b:radiobutton value="#{estudianteController.genero}"
+                                                   itemLabel="Femenino"
+                                                   itemValue="F"/>
+                                </b:panelGrid>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="genero"/>
+                            </b:column>
+                        </b:row>
+
+                         <!-- La fila de los botones-->
+                        <b:row>
+                            <b:column medium-screen="2"/>
+                            <b:column medium-screen="6">
+                                <b:commandButton value="Ingresar"
+                                                 action="#{estudianteController.inserta()}"
+                                                 look="primary"
+                                                 style="width: 33%" />
+                                <b:commandButton value="Eliminar"
+                                                 action="#{estudianteController.elimina()}"
+                                                 look="danger"
+                                                 style="width: 33%" />
+                                <b:commandButton value="Modificar"
+                                                 action="#{estudianteController.modifica()}"
+                                                 look="success"
+                                                 style="width: 33%" />
+                            </b:column>                            
+                        </b:row>                        
+                    </h:form>
+                </b:panel>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

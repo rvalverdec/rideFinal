@@ -1,0 +1,9 @@
+gestion\TuristaGestion.class
+com\sc403\sistema\resources\JavaEE8Resource.class
+com\sc403\sistema\JAXRSConfiguration.class
+model\Turista.class
+controller\ViajesController.class
+controller\TuristaController.class
+model\Conexion.class
+gestion\ViajeGestion.class
+model\Viaje.class

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Costa Rica</title>
+    </h:head>
+    <body>
+        <ui:composition template="./../resources/templates/plantilla.xhtml">
+            <ui:define name="content">
+                <b:panel title="Costa Rica" look="primary">
+                    <h:form>
+                        <b:dataTable value="#{estudianteController.estudiantes}"
+                                     var="estudiante"
+                                     excel="true"
+                                     csv="true"
+                                     pdf="true"
+
+                                     copy="true"
+                                     column-visibility="true"
+                                     print="true">
+                            <b:dataTableColumn value="#{estudiante.idEstudiante}"
+                                               width="9%"
+                                               label="Cédula"/>
+                            <b:dataTableColumn value="#{estudiante.nombre}"
+                                               width="15%"
+                                               label="Nombre"/>
+                            <b:dataTableColumn value="#{estudiante.apellido1}"
+                                               width="19%"
+                                               label="Primer Apellido"/>
+                            <b:dataTableColumn value="#{estudiante.apellido2}"
+                                               width="19%"
+                                               label="Segundo Apellido"/>
+                            <b:dataTableColumn value="#{estudiante.fechaNaci}"
+                                               width="10%"
+                                               style="text-align: center"
+                                               label="F. Naci."/>
+                            <b:dataTableColumn value="#{estudiante.fechaIngr}"
+                                               width="10%"
+                                               style="text-align: center"
+                                               label="F. Ingr."/>
+                            <b:dataTableColumn value="#{estudiante.genero}"
+                                               width="8%"
+                                               style="text-align: center"
+                                               label="Género"/>
+                            <b:dataTableColumn width="10%"
+                                               style="text-align: center"
+                                               label="Acción">
+                                <b:commandButton value="Editar" 
+                                                 look="success"
+                                                 action="#{estudianteController.edita(estudiante.idEstudiante)}"/>
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </h:form>
+                </b:panel>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
