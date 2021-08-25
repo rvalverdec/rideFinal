@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Estudiantes</title>
+    </h:head>
+    <body>
+        <ui:composition template="../resources/templates/template.xhtml">
+            <ui:define name="content">
+                <b:panel title="Estudiante" look="primary">
+                    <h:form id="editaEstudianteForm">
+                        <!-- La fila del idEstudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Id Turista"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Id Turista"
+                                             id="idTurista"
+                                             required="true"
+                                             value="#{turistaController.idTurista}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="idEstudiante"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila del nombre del estudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Nombre"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Nombre"
+                                             id="nombre"
+                                             required="true"
+                                             value="#{turistaController.nombreUsuario}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="nombre"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila del primer apellido del estudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Primer apellido"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Primer apellido"
+                                             id="apellido1"
+                                             required="true"
+                                             value="#{turistaController.correoTurista}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="apellido1"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila del segundo apellido del estudiante -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Segundo apellido"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Segundo apellido"
+                                             id="apellido2"
+                                             value="#{turistaController.pwTurista}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="apellido2"/>
+                            </b:column>
+                        </b:row>
+
+                       
+
+                        
+
+                        
+
+                         <!-- La fila de los botones-->
+                        <b:row>
+                            <b:column medium-screen="2"/>
+                            <b:column medium-screen="6">
+                                <b:commandButton value="Ingresar"
+                                                 action="#{turistaController.inserta()}"
+                                                 look="primary"
+                                                 style="width: 33%" />
+                                <b:commandButton value="Eliminar"
+                                                 action="#{turistaController.elimina()}"
+                                                 look="danger"
+                                                 style="width: 33%" />
+                                <b:commandButton value="Modificar"
+                                                 action="#{turistaController.modifica()}"
+                                                 look="success"
+                                                 style="width: 33%" />
+                            </b:column>                            
+                        </b:row>                        
+                    </h:form>
+                </b:panel>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

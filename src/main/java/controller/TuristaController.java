@@ -28,40 +28,40 @@ public class TuristaController extends Turista implements Serializable {
 
     public String inserta() {
         if (TuristaGestion.insertar(this)) {
-            return "list.xhtml";
+            return "listarTurista.xhtml";
         } else {
             FacesMessage mensaje
                     = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Error", "Posible cédula duplicada");
             FacesContext.getCurrentInstance().addMessage(
                     "editaTuristaform:idTurista", mensaje);
-            return "edita.xhtml";
+            return "editaTurista.xhtml";
         }
     }
 
     public String modifica() {
         if (TuristaGestion.modificar(this)) {
-            return "list.xhtml";
+            return "listarTurista.xhtml";
         } else {
             FacesMessage mensaje
                     = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Error", "Posible cédula duplicada");
             FacesContext.getCurrentInstance().addMessage(
                     "editaTuristaForm:idTurista", mensaje);
-            return "edita.xhtml";
+            return "editaTurista.xhtml";
         }
     }
 
     public String elimina() {
         if (TuristaGestion.eliminar(this)) {
-            return "list.xhtml";
+            return "listarTuristas.xhtml";
         } else {
             FacesMessage mensaje
                     = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Error", "Es posible que tenga notas");
             FacesContext.getCurrentInstance().addMessage(
                     "editaTuristaForm:idTurista", mensaje);
-            return "edita.xhtml";
+            return "editaTurista.xhtml";
         }
     }
 
@@ -74,7 +74,7 @@ public class TuristaController extends Turista implements Serializable {
             this.setCorreoTurista(turista.getCorreoTurista());
             this.setActivo(turista.isActivo());
             this.setIdRol(turista.getIdRol());           
-            return "edita.xhtml";
+            return "editaTurista.xhtml";
         } else {  //Por alguna razón no esta el turista...
             return "listarTurista.xhtml";
         }
