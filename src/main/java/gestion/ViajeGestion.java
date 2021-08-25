@@ -12,24 +12,25 @@ import model.Conexion;
 import model.Viaje;
 
 
-    public class ViajeGestion {
+public class ViajeGestion {
 
+    
+    //Insertar un nuevo viaje 
         public static boolean insertar(Viaje viaje) {
             //Sentencia para insertar un Viaje
-            String sentencia = "insert into Viajes "
-                    + "(idViaje,ubicacion,nombreLugar,descripcion,requerimiento,oferta,telefono,correoElectronico)"
-                    + "values (?,?,?,?,?,?,?,?)";
+            String sentencia = "insert into Viaje"
+                    + "(idViaje,nombre,descripcion,telefono,correoElectronico,activo,costo)"
+                    + "values (?,?,?,?,?,?,?)";
             try {
                 PreparedStatement consulta = Conexion.getConexion()
                         .prepareStatement(sentencia);
                 consulta.setString(1, viaje.getIdViaje());
-                consulta.setString(2, viaje.getUbicacion());
-                consulta.setString(3, viaje.getNombreLugar());
-                consulta.setString(4, viaje.getDescripcion());
-                consulta.setString(5, viaje.getRequerimiento());
-                consulta.setString(6, viaje.getOferta());
-                consulta.setString(7, viaje.getTelefono());
-                consulta.setString(8, viaje.getCorreoElectronico());
+                consulta.setString(2, viaje.getNombre());
+                consulta.setString(3, viaje.getDescripcion());
+                consulta.setString(4, viaje.getTelefono());
+                consulta.setString(5, viaje.getCorreoElectronico());
+                consulta.setBoolean(6, viaje.isActivo());
+                consulta.setDouble(7, viaje.getCosto());
                 return consulta.executeUpdate() > 0;  //retorna true si logra inserta o falso si no...
             } catch (SQLException ex) {
                 Logger.getLogger(ViajeGestion.class.getName()).log(Level.SEVERE, null, ex);
@@ -38,20 +39,20 @@ import model.Viaje;
 
         }
 
-        public static boolean modificar(Viaje viaje) {
+     public static boolean modificar(Viaje viaje) {
             //Sentencia para modificar un Viaje
-            String sentencia = "update Viajes set ubicacion=?,nombreLugar=?,descripcion=?,requerimiento=?,oferta=?,telefono=?,correoElectronico=? where idViaje=?";
+            String sentencia = "update viaje set nombre=?,descripcion=?,telefono=?,correoElectronico=?, activo=?, costo=? where idViaje=?";
             try {
                 PreparedStatement consulta = Conexion.getConexion()
                         .prepareStatement(sentencia);
-                consulta.setString(1, viaje.getUbicacion());
-                consulta.setString(2, viaje.getNombreLugar());
-                consulta.setString(3, viaje.getDescripcion());
-                consulta.setString(4, viaje.getRequerimiento());
-                consulta.setString(5, viaje.getOferta());
-                consulta.setString(6, viaje.getTelefono());
-                consulta.setString(7, viaje.getCorreoElectronico());
-                consulta.setString(8, viaje.getIdViaje());
+           
+                consulta.setString(1, viaje.getNombre());
+                consulta.setString(2, viaje.getDescripcion());
+                consulta.setString(3, viaje.getTelefono());
+                consulta.setString(4, viaje.getCorreoElectronico());
+                consulta.setBoolean(5, viaje.isActivo());
+                consulta.setDouble(6, viaje.getCosto());
+                consulta.setString(7, viaje.getIdViaje());
                 return consulta.executeUpdate() > 0;  //retorna true si logra modificar o falso si no...
             } catch (SQLException ex) {
                 Logger.getLogger(ViajeGestion.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,7 +63,7 @@ import model.Viaje;
 
         public static boolean eliminar(Viaje viaje) {
             //Sentencia para eliminar un Viaje
-            String sentencia = "delete from Viajes where idViaje=?";
+            String sentencia = "delete from viaje where idViaje=?";
             try {
                 PreparedStatement consulta = Conexion.getConexion()
                         .prepareStatement(sentencia);
@@ -77,7 +78,7 @@ import model.Viaje;
 
         public static Viaje getViaje(String idViaje) {
             Viaje viaje = null;
-            String sentencia = "Select * from Viajes where idViaje=?";
+            String sentencia = "Select * from viaje where idViaje=?";
             //String sentencia = "Select * from Viaje where idViaje="+ idViaje;
             try {
                 PreparedStatement consulta = Conexion.getConexion()
@@ -86,13 +87,13 @@ import model.Viaje;
                 ResultSet datos = consulta.executeQuery();
                 if (datos.next()) {  //mientras se pueda avanzar...
                     viaje = new Viaje(
-                            datos.getString(2),
-                            datos.getString(3),
-                            datos.getString(4),
-                            datos.getString(5),
-                            datos.getString(6),
-                            datos.getString(7),
-                            datos.getString(8));
+                            datos.getString(2), //idViaje
+                            datos.getString(3), //Nombre
+                            datos.getString(4), //Descripcion
+                            datos.getString(5), // Telefono
+                            datos.getString(6), //correo electronico
+                            datos.getBoolean(7), //Activo (Boolean)
+                            datos.getDouble(8)); //Costo
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ViajeGestion.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,20 +103,20 @@ import model.Viaje;
 
         public static ArrayList<Viaje> getViajes() {
             ArrayList<Viaje> lista = new ArrayList<>();
-            String sentencia = "Select * from Viajes";
+            String sentencia = "Select * from Viaje";
             try {
                 PreparedStatement consulta = Conexion.getConexion()
                         .prepareStatement(sentencia);
                 ResultSet datos = consulta.executeQuery();
                 while (datos.next()) {  //mientras se pueda avanzar...
                     lista.add(new Viaje(
-                            datos.getString(2),
-                            datos.getString(3),
-                            datos.getString(4),
-                            datos.getString(5),
-                            datos.getString(6),
-                            datos.getString(7),
-                            datos.getString(8)));
+                            datos.getString(2), //idViaje
+                            datos.getString(3), //nombre
+                            datos.getString(4), //Descripcion
+                            datos.getString(5), //Telefono
+                            datos.getString(6), // Correo
+                            datos.getBoolean(7), //Activo
+                            datos.getDouble(8))); //Costo
                 }
 
             } catch (SQLException ex) {
@@ -124,8 +125,5 @@ import model.Viaje;
             return lista;
         }
 
-        public static List<Viaje> getViaje() {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
+     
     }

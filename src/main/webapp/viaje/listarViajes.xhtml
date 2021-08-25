@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title>Viajes</title>
+    </h:head>
+    <body>
+        <ui:composition template="../resources/templates/template.xhtml">
+            <ui:define name="content">
+                <b:panel title="Viajes" look="primary">
+                    <h:form>
+                        <b:dataTable value="#{viajesController.viajes}"
+                                     var="viaje"
+                                     excel="true"
+                                     csv="true"
+                                     pdf="true"
+                                     copy="true"
+                                     column-visibility="true"
+                                     print="true">
+                            <b:dataTableColumn value="#{viaje.idViaje}"
+                                               width="9%"
+                                               label="Id del viaje"/>
+                            <b:dataTableColumn value="#{viaje.nombre}"
+                                               width="20%"
+                                               label="Tipo de Viaje"/>
+                            <b:dataTableColumn value="#{viaje.descripcion}"
+                                               width="20%"
+                                               label="Descripción"/>
+                            <b:dataTableColumn value="#{viaje.telefono}"
+                                               width="15%"
+                                               label="Teléfono"/>
+                            <b:dataTableColumn value="#{viaje.correoElectronico}"
+                                               width="15%"
+                                               label="Correo Electrónico"/>
+                             
+                              <b:dataTableColumn value="#{viaje.costo}"
+                                               width="19%"
+                                               label="Costo del Viaje"/>
+                              <b:dataTableColumn value="#{viaje.activo}"
+                                               width="10%"
+                                               label="Disponible"/>
+                            
+                            <b:dataTableColumn width="10%"
+                                               style="text-align: center"
+                                               label="Acción">
+                                <b:commandButton value="" 
+                                                 icon-awesome="pencil"
+                                                 look="success"
+                                                 action="#{viajesController.edita(viaje.idViaje)}"/>
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </h:form>
+                </b:panel>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

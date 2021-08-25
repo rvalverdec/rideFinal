@@ -44,7 +44,6 @@ public class TuristaGestion {
     }
 
     public static boolean insertar(Turista turista) {
-        //Sentencia para insertar un estudiante
         String sentencia = "insert into turista "
                 + "(idturista,pwTurista, nombreUsuario,correoTurista,activo,idRol)"
                 + "values (?,?,?,?,?,?)";
@@ -124,19 +123,19 @@ public class TuristaGestion {
 
     public static ArrayList<Turista> getTuristas() {
         ArrayList<Turista> lista = new ArrayList<>();
-        String sentencia = "Select * from estudiante";
+        String sentencia = "Select * from turista";
         try {
             PreparedStatement consulta = Conexion.getConexion()
                     .prepareStatement(sentencia);
             ResultSet datos = consulta.executeQuery();
-            while (datos.next()) {  //mientras se pueda avanzar...
+            while (datos.next()) {  
                 lista.add(new Turista(
                         datos.getString(2), //idTurista
                         datos.getString(3), //pass
                         datos.getString(4), //nombre
                         datos.getString(5), //correo
                         datos.getBoolean(6), //activo
-                        datos.getString(7)));
+                        datos.getString(7))); //rol
             }
         } catch (SQLException ex) {
             Logger.getLogger(TuristaGestion.class.getName()).log(Level.SEVERE, null, ex);

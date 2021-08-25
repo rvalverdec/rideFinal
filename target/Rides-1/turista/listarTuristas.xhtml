@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+    <h:head>
+        <title>Turistas</title>
+    </h:head>
+    <body>
+        <ui:composition template="../resources/templates/template.xhtml">
+            <ui:define name="content">
+
+
+                <b:panel title="Turistas" style="margin-top: 2%" col-lg="9" look="primary" collapsible="false" >
+                    <h:form >
+                        <b:dataTable value="#{turistaController.turistas}"
+                                     var="turista"
+                                     excel="true"
+                                     csv="true"
+                                     pdf="true"
+                                     copy="true"
+
+                                     column-visibility="true"
+                                     print="true">
+                            <b:dataTableColumn value="#{turista.idTurista}"
+                                               width="9%"
+                                               label="ID"/>
+                            <b:dataTableColumn value="#{turista.nombreUsuario}"
+                                               width="20%"
+                                               label="Nombre Completo"/>
+
+
+                            <b:dataTableColumn value="#{turista.correoTurista}"
+                                               width="15%"
+                                               label="Correo"/>
+                            <b:dataTableColumn value="#{turista.activo}"
+                                               width="6%"
+                                               style="text-align: center"
+                                               label="Estado de turista"/>
+                            <b:dataTableColumn value="#{turista.idRol}"
+                                               width="6%"
+                                               style="text-align: center"
+                                               label="Rol">                               
+                            </b:dataTableColumn>
+                            <b:dataTableColumn value=""
+                                               width="20%"
+                                               style="text-align: center"
+                                               label="Accion">
+
+                                <b:commandButton value="" 
+                                                 look="success"
+                                                 icon-awesome="edit"
+                                                 col-md="6"
+                                                 action="#{turistaController.edita(turista.idTurista)}"/>
+
+
+                                <div col-md="1"></div>
+                                <b:commandButton value="" 
+                                                 look="danger"
+                                                 icon-awesome="trash"
+                                                 col-md="6"
+                                                 action="#{turistaController.elimina(turista.idTurista)}"/>
+
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </h:form>
+                </b:panel>
+                <div></div>
+
+                <b:panel col-lg="3" look="primary" style="margin-top: 40%">
+                    <b:row>
+
+                        <b:button  col-lg="12" class="btn btn-lg btn-info" value="Agregar Turista" look="primary" onclick="$('.modalPseudoClassTurista').modal()" /> 
+                    </b:row>
+
+                    <b:row>
+                        <b:button col-lg="12" class="btn btn-lg btn-info" style="margin-top: 10%" value="Ver Reporte"/> 
+                    </b:row>
+                </b:panel>
+
+
+
+
+
+
+                <!-- Modal para formulario de Ingresar Turista -->
+                <b:modal id="amodalTurista" title="Agregar Turista" styleClass="modalPseudoClassTurista">
+
+
+                    <!-- Formulario para agregar un nuevo Turista -->
+
+                    <h:form id="editaTuristaform">
+                        
+                        
+                        
+                        <!--Identificacion-->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Identificación"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="cedula"
+                                             id="idTurista"
+                                             required="true"
+                                             value="#{turistaController.idTurista}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="idTurista"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- Nombre -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Nombre Completo"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Nombre Completo"
+                                             id="nombreUsuario"
+                                             required="true"
+                                             value="#{turistaController.nombreUsuario}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="nombre"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- Correo electronico -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Correo Electronico"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Correo Electronico"
+                                             id="correoTurista"
+                                             value="#{turistaController.correoTurista}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="correoTurista"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La contraseña -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Contraseña"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Contraseña"
+                                             id="pwTurista"
+                                             type="password"
+                                             required="true"
+                                             value="#{turistaController.pwTurista}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="contraseña"/>
+                            </b:column>
+                        </b:row>
+
+
+
+                        <!-- Estado del Turista -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Estado"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:panelGrid size="" columns="2">
+                                    <b:radiobutton value="#{turistaController.activo}"
+                                                   itemLabel="Activo"
+                                                   itemValue="true"/>
+                                    <b:radiobutton value="#{turistaController.activo}"
+                                                   itemLabel="Inactivo"
+                                                   itemValue="false"/>
+                                </b:panelGrid>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="estado"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila de los botones-->
+                        <b:row>
+                            <b:column medium-screen="2"/>
+                            <b:column medium-screen="6">
+
+                               
+                                    
+                                    <b:commandButton value="Ingresar"
+                                                     action="#{turistaController.inserta()}"
+                                                     look="primary"
+                                                     onclick="$('#amodalTurista').hide(); $('#form').trigger('reset');"
+
+                                                     style="width: 33%" />
+                                    <b:commandButton value="Eliminar"
+                                                     action="#{turistaController.elimina()}"
+                                                     look="danger"
+                                                     style="width: 33%" />
+                                    <b:commandButton value="Modificar"
+                                                     action="#{turistaController.modifica()}"
+                                                     look="success"
+                                                     style="width: 33%" />
+
+                                    <b:button value="Close" dismiss="modal" style="width: 33%"  />
+<f:facet name="footer">
+</f:facet>
+
+
+                            </b:column>                            
+                        </b:row>                        
+                    </h:form>
+
+
+
+
+
+                    <b:button value="Ok" look="primary" dismiss="modal" />
+
+                </b:modal>
+
+
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

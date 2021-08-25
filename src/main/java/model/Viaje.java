@@ -1,18 +1,38 @@
-
 package model;
 
 public class Viaje {
 
     private String idViaje;
-    private String ubicacion;
-    private String nombreLugar;
+    private String nombre;
     private String descripcion;
-    private String requerimiento;
-    private String oferta;
     private String telefono;
     private String correoElectronico;
+    private boolean activo;
+    private double costo;
 
     public Viaje() {
+    }
+
+    // Constructor sin el idViajes 
+    public Viaje(String nombre, String descripcion,  String telefono, String correoElectronico, boolean activo, double costo) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.telefono = telefono;
+        this.correoElectronico = correoElectronico;
+        this.activo = activo;
+        this.costo = costo;
+    }
+
+ 
+
+    public Viaje(String idViaje, String nombre, String descripcion,  String telefono, String correoElectronico, boolean activo, double costo) {
+        this.idViaje = idViaje;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.telefono = telefono;
+        this.correoElectronico = correoElectronico;
+        this.activo = activo;
+        this.costo = costo;
     }
 
     public String getIdViaje() {
@@ -23,20 +43,12 @@ public class Viaje {
         this.idViaje = idViaje;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    public String getNombreLugar() {
-        return nombreLugar;
-    }
-
-    public void setNombreLugar(String nombreLugar) {
-        this.nombreLugar = nombreLugar;
+    public void setNombre(String nombreLugar) {
+        this.nombre = nombreLugar;
     }
 
     public String getDescripcion() {
@@ -47,21 +59,22 @@ public class Viaje {
         this.descripcion = descripcion;
     }
 
-    public String getRequerimiento() {
-        return requerimiento;
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setRequerimiento(String requerimiento) {
-        this.requerimiento = requerimiento;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
-    public String getOferta() {
-        return oferta;
+    public double getCosto() {
+        return costo;
     }
 
-    public void setOferta(String oferta) {
-        this.oferta = oferta;
+    public void setCosto(double costo) {
+        this.costo = costo;
     }
+
 
     public String getTelefono() {
         return telefono;
@@ -79,13 +92,4 @@ public class Viaje {
         this.correoElectronico = correoElectronico;
     }
 
-    public Viaje(String ubicacion, String nombreLugar, String descripcion, String requerimiento, String oferta, String telefono, String correoElectronico) {
-        this.ubicacion = ubicacion;
-        this.nombreLugar = nombreLugar;
-        this.descripcion = descripcion;
-        this.requerimiento = requerimiento;
-        this.oferta = oferta;
-        this.telefono = telefono;
-        this.correoElectronico = correoElectronico;
-    }
 }
