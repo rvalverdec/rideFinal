@@ -52,6 +52,12 @@
                                                  action="#{viajesController.edita(viaje.idViaje)}"/>
                             </b:dataTableColumn>
                         </b:dataTable>
+                        <b:commandButton value="Ver Reporte" 
+                                                 look="success"
+                                                 icon-awesome="fa-file-pdf-o"
+                                                 col-md="6"
+                                                 style="width:25%" 
+                                                 action="#{reporteController.pdfViaje()}"/>
                     </h:form>
                 </b:panel>
             </ui:define>

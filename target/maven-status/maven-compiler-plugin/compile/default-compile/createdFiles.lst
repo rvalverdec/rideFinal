@@ -1,6 +1,7 @@
 gestion\TuristaGestion.class
 controller\PaisController.class
 com\sc403\sistema\JAXRSConfiguration.class
+controller\ReporteController.class
 controller\TuristaController.class
 gestion\PaisGestion.class
 com\sc403\rides\resources\JavaEE8Resource.class

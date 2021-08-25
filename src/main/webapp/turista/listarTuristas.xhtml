@@ -65,9 +65,16 @@
                                                  icon-awesome="trash"
                                                  col-md="6"
                                                  action="#{turistaController.elimina(turista.idTurista)}"/>
+                                
 
                             </b:dataTableColumn>
+                            
                         </b:dataTable>
+                        <b:commandButton value="Ver Reporte"
+                                         action="#{reporteController.pdfTurista()}"
+                                                 look="success"
+                                                 icon-awesome="fa-file-pdf-o"
+                                                 style="width:25%"/>
                     </h:form>
                 </b:panel>
                 <div></div>
@@ -79,7 +86,7 @@
                     </b:row>
 
                     <b:row>
-                        <b:button col-lg="12" class="btn btn-lg btn-info" style="margin-top: 10%" value="Ver Reporte"/> 
+                        <b:button col-lg="12" class="btn btn-lg btn-info" style="margin-top: 10%" value="Ver Reporte" /> 
                     </b:row>
                 </b:panel>
 
@@ -95,9 +102,9 @@
                     <!-- Formulario para agregar un nuevo Turista -->
 
                     <h:form id="editaTuristaform">
-                        
-                        
-                        
+
+
+
                         <!--Identificacion-->
                         <b:row>
                             <b:column medium-screen="2">
@@ -189,29 +196,32 @@
                             <b:column medium-screen="2"/>
                             <b:column medium-screen="6">
 
-                               
-                                    
-                                    <b:commandButton value="Ingresar"
-                                                     action="#{turistaController.inserta()}"
-                                                     look="primary"
-                                                     onclick="$('#amodalTurista').hide(); $('#form').trigger('reset');"
-
-                                                     style="width: 33%" />
-                                    <b:commandButton value="Eliminar"
-                                                     action="#{turistaController.elimina()}"
-                                                     look="danger"
-                                                     style="width: 33%" />
-                                    <b:commandButton value="Modificar"
-                                                     action="#{turistaController.modifica()}"
-                                                     look="success"
-                                                     style="width: 33%" />
-
-                                    <b:button value="Close" dismiss="modal" style="width: 33%"  />
-<f:facet name="footer">
-</f:facet>
 
 
-                            </b:column>                            
+                                <b:commandButton value="Ingresar"
+                                                 action="#{turistaController.inserta()}"
+                                                 look="primary"
+                                                 onclick="$('#amodalTurista').hide(); $('#form').trigger('reset');"
+
+                                                 style="width: 33%" />
+                                <b:commandButton value="Eliminar"
+                                                 action="#{turistaController.elimina()}"
+                                                 look="danger"
+                                                 style="width: 33%" />
+                                <b:commandButton value="Modificar"
+                                                 action="#{turistaController.modifica()}"
+                                                 look="success"
+                                                 style="width: 33%" />
+
+                                <b:button value="Close" dismiss="modal" style="width: 33%"  />
+                                
+                                <f:facet name="footer">
+                                </f:facet>
+                                
+
+
+                            </b:column>   
+                            
                         </b:row>                        
                     </h:form>
 
