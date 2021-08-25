@@ -38,41 +38,40 @@ public class ViajesController extends Viaje implements Serializable {
                             "Error", "Posible cédula duplicada");
             FacesContext.getCurrentInstance().addMessage(
                     "editaViajeForm:idViaje", mensaje);
-            return "edita.xhtml";
+            return "editaViaje.xhtml";
         }
     }
 
     public String elimina() {
         if (ViajeGestion.eliminar(this)) {
-            return "list.xhtml";
+            return "listarViajes.xhtml";
         } else {
             FacesMessage mensaje
                     = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Error", "Es posible que tenga notas");
             FacesContext.getCurrentInstance().addMessage(
-                    "editaViajeForm:idTurista", mensaje);
+                    "editaViajeForm:idViaje", mensaje);
             return "edita.xhtml";
         }
     }
 
-    public String edita(String idViaje, String NombreLugar, String Descripcion, String CorreoElectronico, String Oferta, String Requerimiento, String Telefono, String Ubicacion) {
+    public String edita(String idViaje, String Nombre, String Descripcion, String Telefono, String CorreoElectronico, boolean activo, double costo ) {
         Viaje viaje = (Viaje) ViajeGestion.getViaje(idViaje);
         if (viaje != null) {  //Si lo encuantra actualizo la info
-            this.setCorreoElectronico(CorreoElectronico);
+            
+            this.setNombre(Nombre);
             this.setDescripcion(Descripcion);
-            this.setIdViaje(idViaje);
-            this.setNombreLugar(NombreLugar);
-            this.setOferta(Oferta);
-            this.setRequerimiento(Requerimiento);
             this.setTelefono(Telefono);
-            this.setUbicacion(Ubicacion);
-            return "edita.xhtml";
+            this.setCorreoElectronico(CorreoElectronico);
+            this.setActivo(true);
+            this.setCosto(costo);
+            return "editaViaje.xhtml";
         } else {  //Si no encuentra la información del viaje...
-            return "list.xhtml";
+            return "listarViajes.xhtml";
         }
     }
 
-    public List<Viaje> getViaje() {
-        return ViajeGestion.getViaje();
+    public List<Viaje> getViajes() {
+        return ViajeGestion.getViajes();
     }
 }
