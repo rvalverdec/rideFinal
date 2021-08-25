@@ -70,12 +70,12 @@ public class TuristaGestion {
         try {
             PreparedStatement consulta = Conexion.getConexion()
                     .prepareStatement(sentencia);
-            consulta.setString(6, turista.getIdTurista());
             consulta.setString(1, turista.getPwTurista());
             consulta.setString(2, turista.getNombreUsuario());
             consulta.setString(3, turista.getCorreoTurista());
             consulta.setBoolean(4, turista.isActivo());
             consulta.setString(5, "" + turista.getIdRol());
+            consulta.setString(6, turista.getIdTurista());
 
             return consulta.executeUpdate() > 0;  //retorna true si logra modificar o falso si no...
         } catch (SQLException ex) {

@@ -73,6 +73,7 @@ public class TuristaController extends Turista implements Serializable {
             this.setNombreUsuario(turista.getNombreUsuario());
             this.setCorreoTurista(turista.getCorreoTurista());
             this.setActivo(turista.isActivo());
+            this.setIdRol(turista.getIdRol());           
             return "edita.xhtml";
         } else {  //Por alguna razón no esta el turista...
             return "listarTurista.xhtml";
