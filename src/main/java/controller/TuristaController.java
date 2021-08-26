@@ -28,14 +28,17 @@ public class TuristaController extends Turista implements Serializable {
 
     public String inserta() {
         if (TuristaGestion.insertar(this)) {
+
+           
             return "listarTurista.xhtml";
         } else {
             FacesMessage mensaje
                     = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Error", "Posible cédula duplicada");
             FacesContext.getCurrentInstance().addMessage(
-                    "editaTuristaform:idTurista", mensaje);
-            return "editaTurista.xhtml";
+                    "editaTuristaformIngresar:idTurista", mensaje);
+
+            return "listarTurista.xhtml";
         }
     }
 
@@ -48,7 +51,7 @@ public class TuristaController extends Turista implements Serializable {
                             "Error", "Posible cédula duplicada");
             FacesContext.getCurrentInstance().addMessage(
                     "editaTuristaForm:idTurista", mensaje);
-            return "editaTurista.xhtml";
+            return "listarTurista.xhtml";
         }
     }
 
@@ -73,7 +76,7 @@ public class TuristaController extends Turista implements Serializable {
             this.setNombreUsuario(turista.getNombreUsuario());
             this.setCorreoTurista(turista.getCorreoTurista());
             this.setActivo(turista.isActivo());
-            this.setIdRol(turista.getIdRol());           
+            this.setIdRol(turista.getIdRol());
             return "editaTurista.xhtml";
         } else {  //Por alguna razón no esta el turista...
             return "listarTurista.xhtml";

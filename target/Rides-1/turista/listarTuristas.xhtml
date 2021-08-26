@@ -15,9 +15,10 @@
         <ui:composition template="../resources/templates/template.xhtml">
             <ui:define name="content">
 
+                <!-- Panel para mostrar la lista de turistas-->
 
                 <b:panel title="Turistas" style="margin-top: 2%" col-lg="9" look="primary" collapsible="false" >
-                    <h:form >
+                    <h:form id="formTuristas" >
                         <b:dataTable value="#{turistaController.turistas}"
                                      var="turista"
                                      excel="true"
@@ -65,30 +66,34 @@
                                                  icon-awesome="trash"
                                                  col-md="6"
                                                  action="#{turistaController.elimina(turista.idTurista)}"/>
-                                
-                                
+
+
 
                             </b:dataTableColumn>
-                            
+
                         </b:dataTable>
-                        <b:commandButton value="Ver Reporte"
-                                         action="#{reporteController.pdfTurista()}"
-                                                 look="success"
-                                                 icon-awesome="fa-file-pdf-o"
-                                                 style="width:25%"/>
+
                     </h:form>
                 </b:panel>
+
                 <div></div>
 
+                <!-- Panel de Botones de Agregar Turista y Reporte -->
+
                 <b:panel col-lg="3" look="primary" style="margin-top: 40%">
-                    <b:row>
+                    <h:form id="botonesTurista">
+                        <b:row>
+                            <b:button  col-lg="12" class="btn btn-lg btn-info" value="Agregar Turista" look="primary" onclick="$('.modalPseudoClassTurista').modal()" /> 
+                        </b:row>
 
-                        <b:button  col-lg="12" class="btn btn-lg btn-info" value="Agregar Turista" look="primary" onclick="$('.modalPseudoClassTurista').modal()" /> 
-                    </b:row>
-
-                    <b:row>
-                        <b:button col-lg="12" class="btn btn-lg btn-info" style="margin-top: 10%" value="Ver Reporte" /> 
-                    </b:row>
+                        <b:row>
+                            <b:commandButton value="Ver Reporte"
+                                             action="#{reporteController.pdfTurista()}"
+                                             look="success"
+                                             icon-awesome="fa-file-pdf-o"
+                                             style="width:25%"/>
+                        </b:row>
+                    </h:form>
                 </b:panel>
 
 
@@ -97,15 +102,13 @@
 
 
                 <!-- Modal para formulario de Ingresar Turista -->
+
                 <b:modal id="amodalTurista" title="Agregar Turista" styleClass="modalPseudoClassTurista">
 
 
                     <!-- Formulario para agregar un nuevo Turista -->
 
-                    <h:form id="editaTuristaform">
-
-
-
+                    <h:form id="editaTuristaformIngresar">
                         <!--Identificacion-->
                         <b:row>
                             <b:column medium-screen="2">
@@ -192,45 +195,45 @@
                             </b:column>
                         </b:row>
 
-                        <!-- La fila de los botones-->
+                        <!--Rol de Turista-->
+
                         <b:row>
-                            <b:column medium-screen="2"/>
-                            <b:column medium-screen="6">
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Rol"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <h:selectOneMenu value="#{turistaController.idRol}">
+                                    <f:selectItem itemValue="admin" itemLabel="Administrador" />
+                                    <f:selectItem itemValue="turista" itemLabel="Turista" />
+                                    <f:selectItem itemValue="respaldo" itemLabel="Respaldo" />
+                                </h:selectOneMenu>
+
+
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="Rol"/>
+                            </b:column>
+                        </b:row>
 
 
 
-                                <b:commandButton value="Ingresar"
-                                                 action="#{turistaController.inserta()}"
-                                                 look="primary"
-                                                 onclick="$('#amodalTurista').hide(); $('#form').trigger('reset');"
-
-                                                 style="width: 33%" />
-                                <b:commandButton value="Eliminar"
-                                                 action="#{turistaController.elimina()}"
-                                                 look="danger"
-                                                 style="width: 33%" />
-                                <b:commandButton value="Modificar"
-                                                 action="#{turistaController.modifica()}"
-                                                 look="success"
-                                                 style="width: 33%" />
-
-                                <b:button value="Close" dismiss="modal" style="width: 33%"  />
-                                
-                                <f:facet name="footer">
-                                </f:facet>
-                                
+                        <!-- La fila de los botones-->
 
 
-                            </b:column>   
-                            
-                        </b:row>                        
+
+
+
+                        <b:commandButton value="Ingresar"
+                                         action="#{turistaController.inserta()}"
+                                         look="primary"
+                                         onclick="$('#editaTuristaformIngresar').trigger('reset');"
+
+                                         style="width: 33%" 
+                                         />
+
+
+                        <b:button value="Close" onclick="" look="warming" dismiss="modal" style="width: 33%"  />
                     </h:form>
-
-
-
-
-
-                    <b:button value="Ok" look="primary" dismiss="modal" />
 
                 </b:modal>
 
