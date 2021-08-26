@@ -12,7 +12,7 @@
         <ui:composition template="../resources/templates/template.xhtml">
             <ui:define name="content">
                 <b:panel title="Turista" look="primary">
-                    <h:form id="idTuristaForm">
+                    <h:form id="editaTuristaForm">
                         <!-- La fila del idTuristaForm -->
                         <b:row>
                             <b:column medium-screen="2">
@@ -20,12 +20,13 @@
                             </b:column>
                             <b:column medium-screen="4">
                                 <b:inputText placeholder="Id Turista"
+                                             readonly="true"
                                              id="idTurista"
                                              required="true"
                                              value="#{turistaController.idTurista}"/>
                             </b:column>
                             <b:column medium-screen="6" style-class="message">
-                                <b:message for="idEstudiante"/>
+                                <b:message for="idTurista"/>
                             </b:column>
                         </b:row>
 
@@ -45,7 +46,7 @@
                             </b:column>
                         </b:row>
 
-                        <!-- La fila del primer Correo del estudiante -->
+                        <!-- La fila del primer Correo del turista -->
                         <b:row>
                             <b:column medium-screen="2">
                                 <h:outputLabel value="Correo"/>
@@ -61,7 +62,7 @@
                             </b:column>
                         </b:row>
 
-                        <!-- La fila del pwTurista del estudiante -->
+                        <!-- La fila del pwTurista del turista -->
                         <b:row>
                             <b:column medium-screen="2">
                                 <h:outputLabel value="pwTurista"/>
