@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import model.Turista;
+import org.w3c.dom.Document;
 
 @Named(value = "turistaController")
 @SessionScoped
@@ -27,42 +28,48 @@ public class TuristaController extends Turista implements Serializable {
     }
 
     public String inserta() {
-        if (TuristaGestion.insertar(this)) {
-            return "list.xhtml";
+       if (TuristaGestion.insertar(this)) {
+            return "listarTuristas.xhtml";
+            
         } else {
-            FacesMessage mensaje
-                    = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "Error", "Posible cédula duplicada");
+            FacesMessage mensaje = 
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    "Error","Posible cédula duplicada");
             FacesContext.getCurrentInstance().addMessage(
-                    "editaTuristaform:idTurista", mensaje);
-            return "edita.xhtml";
+                    "turistaformIngresar:idTurista", mensaje);            
+            return "ingresarTuristas.xhtml";
         }
     }
 
     public String modifica() {
         if (TuristaGestion.modificar(this)) {
-            return "list.xhtml";
+            return "listarTuristas.xhtml";
         } else {
             FacesMessage mensaje
                     = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Error", "Posible cédula duplicada");
             FacesContext.getCurrentInstance().addMessage(
                     "editaTuristaForm:idTurista", mensaje);
-            return "edita.xhtml";
+            return "editaTurista.xhtml";
         }
     }
 
-    public String elimina() {
-        if (TuristaGestion.eliminar(this)) {
-            return "list.xhtml";
+    public String elimina(String idTurista) {
+         Turista turista = TuristaGestion.getTurista(idTurista); 
+         if(turista!=null){
+       
+             if (TuristaGestion.eliminar(turista)) {
+            return "listarTuristas.xhtml";
         } else {
             FacesMessage mensaje
                     = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Error", "Es posible que tenga notas");
             FacesContext.getCurrentInstance().addMessage(
-                    "editaTuristaForm:idTurista", mensaje);
-            return "edita.xhtml";
+                    "formTuristas:idBorrar", mensaje);
+            return "listarTuristas.xhtml";
         }
+         }
+         return "listarTuristas.xhtml";
     }
 
     public String edita(String idTurista) {
@@ -73,8 +80,8 @@ public class TuristaController extends Turista implements Serializable {
             this.setNombreUsuario(turista.getNombreUsuario());
             this.setCorreoTurista(turista.getCorreoTurista());
             this.setActivo(turista.isActivo());
-            this.setIdRol(turista.getIdRol());           
-            return "edita.xhtml";
+            this.setIdRol(turista.getIdRol());
+            return "editaTurista.xhtml";
         } else {  //Por alguna razón no esta el turista...
             return "listarTurista.xhtml";
         }

@@ -1,4 +1,6 @@
-package com.sc403.sistema;
+package com.sc403.rides;
+
+
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

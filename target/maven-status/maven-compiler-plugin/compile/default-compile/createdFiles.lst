@@ -1,6 +1,6 @@
 gestion\TuristaGestion.class
 controller\PaisController.class
-com\sc403\sistema\JAXRSConfiguration.class
+com\sc403\rides\JAXRSConfiguration.class
 controller\ReporteController.class
 controller\TuristaController.class
 gestion\PaisGestion.class

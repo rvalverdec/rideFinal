@@ -45,17 +45,17 @@ public class TuristaGestion {
 
     public static boolean insertar(Turista turista) {
         String sentencia = "insert into turista "
-                + "(idturista,pwTurista, nombreUsuario,correoTurista,activo,idRol)"
+                + "(idturista,pwTurista, nombreUsuario,correoTurista,activo,idRolTurista)"
                 + "values (?,?,?,?,?,?)";
         try {
             PreparedStatement consulta = Conexion.getConexion()
                     .prepareStatement(sentencia);
-            consulta.setString(2, turista.getIdTurista());
-            consulta.setString(3, turista.getPwTurista());
-            consulta.setString(4, turista.getNombreUsuario());
-            consulta.setString(5, turista.getCorreoTurista());
-            consulta.setBoolean(6, turista.isActivo());
-            consulta.setString(7, "" + turista.getIdRol());
+            consulta.setString(1, turista.getIdTurista());
+            consulta.setString(2, turista.getPwTurista());
+            consulta.setString(3, turista.getNombreUsuario());
+            consulta.setString(4, turista.getCorreoTurista());
+            consulta.setBoolean(5, turista.isActivo());
+            consulta.setString(6, turista.getIdRol());
 
             return consulta.executeUpdate() > 0;  //retorna true si logra inserta o falso si no...
         } catch (SQLException ex) {
@@ -66,7 +66,7 @@ public class TuristaGestion {
 
     public static boolean modificar(Turista turista) {
         //Sentencia para modificar un turista
-        String sentencia = "update turista set pwTurista=?, nombreUsuario=?,correoTurista=?,activo=?,idRol=?  where idTurista=?";
+        String sentencia = "update turista set pwTurista=?, nombreUsuario=?,correoTurista=?,activo=?,idRolTurista=?  where idTurista=?";
         try {
             PreparedStatement consulta = Conexion.getConexion()
                     .prepareStatement(sentencia);
