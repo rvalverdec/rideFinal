@@ -13,7 +13,7 @@
 
                 <b:panel title="Paiss" style="margin-top: 2%" col-lg="9" look="primary" collapsible="false" >
                     <h:form id="formPaiss" >
-                        <b:dataTable value="#{paisController.paises}"
+                        <b:dataTable value="#{paisController.paises}" 
                                      var="pais"
                                      excel="true"
                                      csv="true"
@@ -76,9 +76,7 @@
                                        class ="btn"
                                        style="width:50%; color: #ffffff; margin-left: 25% "
                                        icon-awesome="user-plus"
-                                       onclick="window.location.href = '#{request.contextPath}/faces/pais/ingresarPais.xhtml';"
-
-                                       /> 
+                                       onclick="window.location.href = '#{request.contextPath}/faces/pais/ingresarPais.xhtml';"/> 
 
                         </b:row>
                         <br></br>
@@ -88,7 +86,10 @@
                                              look="success"
                                              icon-awesome="fa-file-pdf-o"
                                              style="width:50%; margin-left: 25%"/>
+
                         </b:row>
+                        <br></br>
+                        
                     </h:form>
                 </b:panel>
 
