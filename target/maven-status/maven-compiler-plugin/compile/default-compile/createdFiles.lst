@@ -5,6 +5,7 @@ controller\ReporteController.class
 controller\TuristaController.class
 gestion\PaisGestion.class
 com\sc403\rides\resources\JavaEE8Resource.class
+controller\RespaldoController.class
 model\Turista.class
 controller\ViajesController.class
 model\Pais.class

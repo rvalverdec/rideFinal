@@ -36,6 +36,16 @@
                 <b:commandButton look="success" icon="chevron-right" iconAlign="right"
                                  value="Validar"
                                  action="#{turistaController.valida()}"/>
+                
+                <b:column medium-screen="6">
+                    <b:button value="Agregar Paises" 
+                              onclick="window.location.href='#{request.contextPath}/faces/pais/respaldo.xhtml'"
+
+                              look="success" 
+                              class="btn"
+                              iconAwesome="save"
+                              style="width: 50%; color: #ffffff;"/>
+                </b:column>
             </h:form>
         </b:navBar>
 

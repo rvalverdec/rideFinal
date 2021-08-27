@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Respaldos</title>
+    </h:head>
+    <body>        
+        <ui:composition template="./../resources/templates/plantilla.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <b:panel title="Respaldos" look="primary">
+                        <!-- fila los sellecionar los files a BK -->
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <h:outputLabel value="Seleccione los archivos a respaldar"/>
+                            </b:column>
+                            <b:column medium-screen="3">
+                                <h:selectManyListbox
+                                    value="#{respaldoController.seleccionados}"
+                                    style="width: 100%">
+                                    <f:selectItems
+                                        value="#{respaldoController.archivos}"
+                                        var="item"
+                                        itemLabel="#{item}"
+                                        itemValue="#{item}"/>
+                                </h:selectManyListbox>
+                            </b:column>
+
+                        </b:row>
+                        <p:separator/>
+                        <!-- Fila mostrar el nombre del file a respalda -->
+                        <b:row>
+                            <b:column medium-screen="3">
+                                <h:outputLabel value="El respaldo se llamara"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <h:outputLabel value="#{respaldoController.archivoRespaldo}.zip"/>
+                            </b:column>
+                        </b:row>
+                        <p:separator/>
+
+                        <!-- Fila mostrar boton pra BK -->
+                        <b:row>
+                            <b:column medium-screen="3"/>                                
+                            <b:column medium-screen="2">
+                                <b:commandButton value="Hacer respaldo"
+                                                 look="primary"
+                                                 style="width: 100%"
+                                                 action="#{respaldoController.respaldo()}"/>
+                            </b:column>
+                        </b:row>
+                    </b:panel>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
