@@ -9,14 +9,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="default.css"/>
         <h:outputStylesheet library="css" name="cssLayout.css"/>
-        
+
         <title>Rides</title>
     </h:head>
 
     <h:body style="padding-top: 50px; padding-bottom: 20px;">
 
         <b:navBar brand="Rides" brandHref="#{request.contextPath}/faces/principal2.xhtml" inverse="true" fixed="top">
-            
+
             <b:navbarLinks>
                 <b:dropMenu value="America">
                     <b:navLink value="Argentina" href="#"></b:navLink>
@@ -50,28 +50,33 @@
 
 
                 <!-- Seccion de Administracion -->
- <b:navbarLinks pull="right" style-class="hidden-xs">
-                <b:dropMenu value = "Administracion" icon-awesome="cog" >
+                <b:navbarLinks pull="right" style-class="hidden-xs">
+                    <b:dropMenu value = "Administracion" icon-awesome="cog" rendered="#{turistaController.idRol == 'admin'}">
 
-                    <b:navLink value="Administrar Paises" 
-                               icon-awesome="globe" 
-                               href="#{request.contextPath}/faces/pais/listarPaises.xhtml"/>  
+                        <b:navLink value="Administrar Paises" 
+                                   icon-awesome="globe" 
+                                   href="#{request.contextPath}/faces/pais/listarPaises.xhtml"/>  
 
-                    <b:navLink value="Administrar Viajes"
-                               icon-awesome="plane"  
-                               href="#{request.contextPath}/faces/viaje/listarViajes.xhtml"/>
-                    
-                    <b:navLink value="Administrar Turistas" 
-                               icon-awesome="user" 
-                               href="#{request.contextPath}/faces/turista/listarTuristas.xhtml"> 
-                    
-                    </b:navLink>
-                              
+                        <b:navLink value="Administrar Viajes"
+                                   icon-awesome="plane"  
+                                   href="#{request.contextPath}/faces/viaje/listarViajes.xhtml"/>
+
+                        <b:navLink value="Administrar Turistas" 
+                                   icon-awesome="user" 
+                                   href="#{request.contextPath}/faces/turista/listarTuristas.xhtml"> 
+
+                        </b:navLink>
 
 
-                </b:dropMenu>
- </b:navbarLinks>
-     
+
+                    </b:dropMenu>
+                </b:navbarLinks>
+
+
+                <b:navLink value="Hacer Respaldo"
+                           href="#{request.contextPath}/faces/respaldo/respaldo.xhtml" rendered="#{turistaController.idRol == 'respaldo'}">
+                </b:navLink>
+
             </b:navbarLinks>
 
             <h:form styleClass="navbar-form navbar-right">
@@ -85,7 +90,7 @@
 
         </b:navBar>
 
-       
+
         <div id="content" class="center_content">
             <ui:insert name="content">
             </ui:insert>
