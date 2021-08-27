@@ -12,12 +12,13 @@
         <title>Login</title>
     </h:head>
     
-    <h:body>
-        <b:navBar brand="Rides"  fixed="top">
-            <h:form styleClass="navbar-form navbar-right">
+   <h:body>
+
+        <b:navBar brand="Rides"  fixed="top" inverse="true" style="color: #ffffff;">
+            <h:form id="loginForm" styleClass="navbar-form navbar-right" >
                 <div class="form-group">
                     <b:inputText placeholder="Usuario" fieldSize="sm"
-                                 id="turista"
+                                 id="idTurista"
                                  label="Usuario "
                                  required="true"
                                  value="#{turistaController.idTurista}"/>
@@ -28,20 +29,18 @@
                                  id="pwUsuario"
                                  label="Clave "
                                  required="true"
-                                 type="password"
                                  value="#{turistaController.pwTurista}"
                                  />
                 </div> 
                 #{' '}
                 <b:commandButton look="success" icon="chevron-right" iconAlign="right"
-                                 value="Validar"
+                                 value="Ingresar"
                                  action="#{turistaController.valida()}"/>
             </h:form>
         </b:navBar>
-
-
-
-
+        <b:panel style="background-color: black" >   
+            <h:graphicImage library="images" name="ingresar.jpg" alt="Costa Rica" style="width: 100%; height: 60%" />
+        </b:panel>
     </h:body>
 </html>
 

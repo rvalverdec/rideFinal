@@ -19,7 +19,7 @@
 
                 <b:panel title="Turistas" style="margin-top: 2%" col-lg="9" look="primary" collapsible="false" >
                     <h:form id="formTuristas" >
-                        <b:dataTable value="#{turistaController.turistas}"
+                        <b:dataTable value="#{turistaController.turistasLogout}"
                                      var="turista"
                                      excel="true"
                                      csv="true"
@@ -67,8 +67,6 @@
                                                  col-md="6"
                                                  action="#{turistaController.elimina(turista.idTurista)}"
                                                  onclick = "alert('El turista seleccionado se ha eliminado');"/>
-
-
 
                             </b:dataTableColumn>
 

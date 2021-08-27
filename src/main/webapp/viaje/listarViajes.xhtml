@@ -10,8 +10,11 @@
     <body>
         <ui:composition template="../resources/templates/template.xhtml">
             <ui:define name="content">
-                <b:panel title="Viajes" look="primary">
-                    <h:form>
+
+                <!-- Panel para mostrar la lista de Viajes-->
+
+                <b:panel title="Viajes" style="margin-top: 2%" col-lg="10" look="primary" collapsible="false" >
+                    <h:form id="formViajes">
                         <b:dataTable value="#{viajesController.viajes}"
                                      var="viaje"
                                      excel="true"
@@ -35,14 +38,14 @@
                             <b:dataTableColumn value="#{viaje.correoElectronico}"
                                                width="15%"
                                                label="Correo Electrónico"/>
-                             
-                              <b:dataTableColumn value="#{viaje.costo}"
+
+                            <b:dataTableColumn value="#{viaje.costo}"
                                                width="19%"
                                                label="Costo del Viaje"/>
-                              <b:dataTableColumn value="#{viaje.activo}"
+                            <b:dataTableColumn value="#{viaje.activo}"
                                                width="10%"
                                                label="Disponible"/>
-                            
+
                             <b:dataTableColumn width="10%"
                                                style="text-align: center"
                                                label="Acción">
@@ -50,16 +53,45 @@
                                                  icon-awesome="pencil"
                                                  look="success"
                                                  action="#{viajesController.edita(viaje.idViaje)}"/>
-                            </b:dataTableColumn>
-                        </b:dataTable>
-                        <b:commandButton value="Ver Reporte" 
-                                                 look="success"
-                                                 icon-awesome="fa-file-pdf-o"
+                                <div col-md="1"></div>
+                                <b:commandButton value="" 
+                                                 look="danger"
+                                                 icon-awesome="trash"
                                                  col-md="6"
-                                                 style="width:25%" 
-                                                 action="#{reporteController.pdfViaje()}"/>
+                                                 action="#{viajesController.elimina(viaje.idViaje)}"
+                                                 onclick = "alert('El viaje seleccionado se ha eliminado');"/>
+                            </b:dataTableColumn>
+                        </b:dataTable>                       
                     </h:form>
                 </b:panel>
+                <div></div>
+
+
+
+                <!-- Panel de Botones de Agregar Turista y Reporte -->
+
+                <b:panel col-lg="2" look="primary" style="margin-top: 40%">
+                    <h:form id="botonesTurista" >
+                        <b:row  >
+                            <b:button  value="Agregar Viaje" 
+                                       look="success"
+                                       class ="btn"
+                                       style="width:50%; color: #ffffff; margin-left: 25% "
+                                       icon-awesome="fas fa-plane-departure"
+                                       onclick="window.location.href = '#{request.contextPath}/faces/viaje/ingresarViaje.xhtml';"/> 
+
+                        </b:row>
+                        <br></br>
+                        <b:row>
+                            <b:commandButton value="Ver Reporte"
+                                             action="#{reporteController.pdfViaje()}"
+                                             look="success"
+                                             icon-awesome="fa-file-pdf-o"
+                                             style="width:50%; margin-left: 25%"/>
+                        </b:row>
+                    </h:form>
+                </b:panel>
+
             </ui:define>
         </ui:composition>
     </body>

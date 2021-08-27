@@ -4,6 +4,7 @@ import gestion.TuristaGestion;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -95,4 +96,23 @@ public class TuristaController extends Turista implements Serializable {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "index.xhtml";
     }
+    
+    public List<Turista> getTuristasLogout() {
+        
+        List<Turista> turistasLogout = new ArrayList<>();
+        List<Turista> turistas = TuristaGestion.getTuristas(); //Llamo a todos los turistas
+        String id ="";
+        for (int i = 0; i < turistas.size(); i++) {
+           id=turistas.get(i).getIdTurista();
+            if ( this.getIdTurista() == id) {
+                
+            }
+            else{
+                turistasLogout.add(turistas.get(i));
+            }
+        }
+
+        return turistasLogout;
+    }
+
 }

@@ -1,12 +1,148 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Viajes</title>
     </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
+    <body>
+        <ui:composition template="../resources/templates/template.xhtml">
+            <ui:define name="content">
+                <b:panel title="Viaje" look="primary">
+                    <h:form id="editaViajeForm">
+                        <!-- La fila del idViajeForm -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Id Viaje"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Id Viaje"
+                                             readonly="true"
+                                             id="idViaje"
+                                             required="true"
+                                             value="#{viajesController.idViaje}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="idViaje"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila del nombre del Viaje -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Nombre Viaje"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Nombre Viaje"
+                                             id="nombre"
+                                             required="true"
+                                             value="#{viajesController.nombre}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="nombre"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila del primer Correo del viaje -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Correo"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Correo"
+                                             id="Correo"
+                                             required="true"
+                                             value="#{viajesController.correoElectronico}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="Correo"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- Descripcion del viaje -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Descripcion"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Descripcion"
+                                             id="descripcion"
+                                             value="#{viajesController.descripcion}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="Descripcion"/>
+                            </b:column>
+                        </b:row>
+                        
+                        <!-- TElefono del lugar a viajar-->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Telefono"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Telefono"
+                                             id="telefono"
+                                             value="#{viajesController.telefono}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="Telefono"/>
+                            </b:column>
+                        </b:row>
+
+                        <!--Costo de Viaje-->
+
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Costo"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:inputText placeholder="Costo"
+                                             id="Costo"
+                                             value="#{viajesController.costo}"/>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="Costo"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- Estado del Viaje -->
+                        <b:row>
+                            <b:column medium-screen="2">
+                                <h:outputLabel value="Estado"/>
+                            </b:column>
+                            <b:column medium-screen="4">
+                                <b:panelGrid size="" columns="2">
+                                    <b:radiobutton value="#{viajesController.activo}"
+                                                   itemLabel="Activo"
+                                                   itemValue="true"/>
+                                    <b:radiobutton value="#{viajesController.activo}"
+                                                   itemLabel="Inactivo"
+                                                   itemValue="false"/>
+                                </b:panelGrid>
+                            </b:column>
+                            <b:column medium-screen="6" style-class="message">
+                                <b:message for="estado"/>
+                            </b:column>
+                        </b:row>
+
+                        <!-- La fila de los botones-->
+                        <b:row>
+                            <b:column medium-screen="2"/>
+                            <b:column medium-screen="6">
+
+                                <b:commandButton value="Modificar"
+                                                 action="#{viajesController.modifica()}"
+                                                 look="success"
+                                                 style="width: 33%" />
+                            </b:column>                            
+                        </b:row>                        
+                    </h:form>
+                </b:panel>
+            </ui:define>
+        </ui:composition>
+    </body>
 </html>
 

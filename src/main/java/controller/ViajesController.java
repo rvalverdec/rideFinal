@@ -1,9 +1,11 @@
+
 package controller;
 
 import gestion.ViajeGestion;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -31,7 +33,7 @@ public class ViajesController extends Viaje implements Serializable {
 
     public String modifica() {
         if (ViajeGestion.modificar(this)) {
-            return "list.xhtml";
+            return "listarViajes.xhtml";
         } else {
             FacesMessage mensaje
                     = new FacesMessage(FacesMessage.SEVERITY_ERROR,
@@ -42,7 +44,7 @@ public class ViajesController extends Viaje implements Serializable {
         }
     }
 
-    public String elimina() {
+    public String elimina(String idViaje) {
         if (ViajeGestion.eliminar(this)) {
             return "listarViajes.xhtml";
         } else {
@@ -55,16 +57,18 @@ public class ViajesController extends Viaje implements Serializable {
         }
     }
 
-    public String edita(String idViaje, String Nombre, String Descripcion, String Telefono, String CorreoElectronico, boolean activo, double costo ) {
+    public String edita(String idViaje) {
         Viaje viaje = (Viaje) ViajeGestion.getViaje(idViaje);
+    //    Turista turista = TuristaGestion.getTurista(idTurista);
         if (viaje != null) {  //Si lo encuantra actualizo la info
             
-            this.setNombre(Nombre);
-            this.setDescripcion(Descripcion);
-            this.setTelefono(Telefono);
-            this.setCorreoElectronico(CorreoElectronico);
-            this.setActivo(true);
-            this.setCosto(costo);
+            this.setIdViaje(viaje.getIdViaje());
+            this.setNombre(viaje.getNombre());
+            this.setDescripcion(viaje.getDescripcion());
+            this.setTelefono(viaje.getTelefono());
+            this.setCorreoElectronico(viaje.getCorreoElectronico());
+            this.setActivo(viaje.isActivo());
+            this.setCosto(viaje.getCosto());
             return "editaViaje.xhtml";
         } else {  //Si no encuentra la información del viaje...
             return "listarViajes.xhtml";
@@ -74,4 +78,19 @@ public class ViajesController extends Viaje implements Serializable {
     public List<Viaje> getViajes() {
         return ViajeGestion.getViajes();
     }
+    
+      public List<Viaje> getViajesDisponibles() {
+        
+        List<Viaje> viajesDisponibles = new ArrayList<>();
+        List<Viaje> viajes = ViajeGestion.getViajes(); //Llamo a todos los viajes que tengo en la base de datos por medio del metodo getViajes
+                
+        for (int i = 0; i < viajes.size(); i++) {
+            if (viajes.get(i).isActivo() == true) {
+                viajesDisponibles.add(viajes.get(i));
+            }
+        }
+
+        return viajesDisponibles;
+    }
+
 }
