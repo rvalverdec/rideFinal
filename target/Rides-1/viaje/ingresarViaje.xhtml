@@ -30,8 +30,8 @@
                     <b:panel  style="background-color:#036fab; color: #ffffff ;  margin-left: 20%; margin-right: 20% ; margin-top: 2%"  >
                         <!-- Formulario para agregar un nuevo Viaje -->
 
-                        <h:form id="viajeformIngresar" style=" margin-left: 15%;  ">
-                            <!--Identificacion-->
+                        <h:form id="viajeformIngresar" style=" margin-left: 15%; ">
+                            <!--ID viaje-->
 
                             <b:row> 
                                 <h:outputLabel value="Registro de Usuario   "  style="align-content: center; font-size: 60px;"/>
@@ -42,31 +42,30 @@
                             <br></br>                            
                             <b:row>
                                 <b:column medium-screen="4">
-                                    <h:outputLabel value="Identificación"/>
+                                    <h:outputLabel value="ID Viaje"/>
                                 </b:column>
-                                <b:column medium-screen="6">
-                                    <b:inputText placeholder="cedula"
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="Id Viaje"
+                                                 
                                                  id="idViaje"
                                                  required="true"
-                                                 value="#{viajesController.idViaje}"
-                                                 />
+                                                 value="#{viajesController.idViaje}"/>
                                 </b:column>
                                 <b:column medium-screen="10" style-class="message">
                                     <b:message for="idViaje"/>
                                 </b:column>
                             </b:row>
 
-                            <!-- Nombre -->
+                            <!-- Nombre del viaje-->
                             <b:row>
                                 <b:column medium-screen="4">
-                                    <h:outputLabel value="Nombre Completo"/>
+                                    <h:outputLabel value="Nombre Viaje"/>
                                 </b:column>
                                 <b:column medium-screen="6">
-                                    <b:inputText placeholder="Nombre Completo"
-                                                 id="nombreUsuario"
+                                    <b:inputText placeholder="Nombre Viaje"
+                                                 id="nombre"
                                                  required="true"
-                                                 value="#{viajesController.nombreUsuario}"
-                                                 />
+                                                 value="#{viajesController.nombre}"/>
                                 </b:column>
                                 <b:column medium-screen="10" style-class="message">
                                     <b:message for="nombre"/>
@@ -79,9 +78,10 @@
                                     <h:outputLabel value="Correo Electronico"/>
                                 </b:column>
                                 <b:column medium-screen="6">
-                                    <b:inputText placeholder="Correo Electronico"
-                                                 id="correoViaje"
-                                                 value="#{viajesController.correoViaje}"/>
+                                    <b:inputText placeholder="Correo"
+                                                 id="Correo"
+                                                 required="true"
+                                                 value="#{viajesController.correoElectronico}"/>
                                 </b:column>
                                 <b:column medium-screen="10" style-class="message">
                                     <b:message for="correoViaje"/>
@@ -94,14 +94,27 @@
                                     <h:outputLabel value="Contraseña"/>
                                 </b:column>
                                 <b:column medium-screen="6">
-                                    <b:inputText placeholder="Contraseña"
-                                                 id="pwViaje"
-                                                 type="password"
-                                                 required="true"
-                                                 value="#{viajesController.pwViaje}"/>
+                                    <b:inputText placeholder="Descripcion"
+                                                 id="descripcion"
+                                                 value="#{viajesController.descripcion}"/>
                                 </b:column>
                                 <b:column medium-screen="10" style-class="message">
                                     <b:message for="contraseña"/>
+                                </b:column>
+                            </b:row>
+                            <!-- Telefono del lugar a viajar-->
+
+                            <b:row>
+                                <b:column medium-screen="2">
+                                    <h:outputLabel value="Telefono"/>
+                                </b:column>
+                                <b:column medium-screen="4">
+                                    <b:inputText placeholder="Telefono"
+                                                 id="telefono"
+                                                 value="#{viajesController.telefono}"/>
+                                </b:column>
+                                <b:column medium-screen="6" style-class="message">
+                                    <b:message for="Telefono"/>
                                 </b:column>
                             </b:row>
 
@@ -112,16 +125,14 @@
                                 <b:column medium-screen="4">
                                     <h:outputLabel value="Estado"/>
                                 </b:column>
-                                <b:column medium-screen="6">
+                                <b:column medium-screen="4">
                                     <b:panelGrid size="" columns="2">
                                         <b:radiobutton value="#{viajesController.activo}"
                                                        itemLabel="Activo"
-                                                       itemValue="true"
-                                                       id="activo"/>
+                                                       itemValue="true"/>
                                         <b:radiobutton value="#{viajesController.activo}"
                                                        itemLabel="Inactivo"
-                                                       itemValue="false"
-                                                       id="inactivo"/>
+                                                       itemValue="false"/>
                                     </b:panelGrid>
                                 </b:column>
                                 <b:column medium-screen="10" style-class="message">
@@ -133,19 +144,17 @@
 
                             <b:row>
                                 <b:column medium-screen="4">
-                                    <h:outputLabel value="Rol del Usuario/Viaje"/>
+                                    <h:outputLabel value="Costo"/>
                                 </b:column>
                                 <b:column medium-screen="7">
-                                    <h:selectOneMenu   id="rolFormIngresar"  value="#{viajesController.idRol}"  style="width: 40%; color: #045491;" >
-                                        <f:selectItem itemValue="admin" itemLabel="Administrador" id="adminForm" />
-                                        <f:selectItem itemValue="viaje" itemLabel="Viaje" id="viajeForm" />
-                                        <f:selectItem itemValue="respaldo" itemLabel="Respaldo" id="respaldoForm" />
-                                    </h:selectOneMenu>
+                                    <b:inputText placeholder="Costo"
+                                                 id="Costo"
+                                                 value="#{viajesController.costo}"/>
 
 
                                 </b:column>
                                 <b:column medium-screen="10" style-class="message">
-                                    <b:message for="Rol"/>
+                                    <b:message for="costo"/>
                                 </b:column>
                             </b:row>
                             <br></br><!-- comment -->

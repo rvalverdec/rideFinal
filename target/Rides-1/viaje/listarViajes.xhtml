@@ -33,31 +33,33 @@
                                                width="20%"
                                                label="Descripción"/>
                             <b:dataTableColumn value="#{viaje.telefono}"
-                                               width="15%"
+                                               width="10%"
                                                label="Teléfono"/>
                             <b:dataTableColumn value="#{viaje.correoElectronico}"
                                                width="15%"
                                                label="Correo Electrónico"/>
 
                             <b:dataTableColumn value="#{viaje.costo}"
-                                               width="19%"
+                                               width="9%"
                                                label="Costo del Viaje"/>
                             <b:dataTableColumn value="#{viaje.activo}"
-                                               width="10%"
+                                               width="3%"
                                                label="Disponible"/>
 
-                            <b:dataTableColumn width="10%"
-                                               style="text-align: center"
+                            <b:dataTableColumn width="15%"
+                                               style="align-items: center"
                                                label="Acción">
                                 <b:commandButton value="" 
+                                                 
                                                  icon-awesome="pencil"
                                                  look="success"
+                                                 col-md="9"
                                                  action="#{viajesController.edita(viaje.idViaje)}"/>
-                                <div col-md="1"></div>
+                                <b:row><br> </br></b:row>
                                 <b:commandButton value="" 
                                                  look="danger"
                                                  icon-awesome="trash"
-                                                 col-md="6"
+                                                 col-md="9"
                                                  action="#{viajesController.elimina(viaje.idViaje)}"
                                                  onclick = "alert('El viaje seleccionado se ha eliminado');"/>
                             </b:dataTableColumn>

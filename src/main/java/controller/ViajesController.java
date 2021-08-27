@@ -20,14 +20,14 @@ public class ViajesController extends Viaje implements Serializable {
 
     public String inserta() {
         if (ViajeGestion.insertar(this)) {
-            return "list.xhtml";
+            return "listarViajes.xhtml";
         } else {
             FacesMessage mensaje
                     = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                             "Error", "Intente de nuevo");
             FacesContext.getCurrentInstance().addMessage(
                     "editaViajeForm:idTurista", mensaje);
-            return "edita.xhtml";
+            return "listarViajes.xhtml";
         }
     }
 

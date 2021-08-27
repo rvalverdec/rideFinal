@@ -59,13 +59,14 @@ public class PaisController extends Pais implements Serializable {
         }
     }
 
-    public String edita(String idPais, String Nombre, String Continente, String Descripcion) {
+    public String edita(String idPais) {
         Pais pais = (Pais) PaisGestion.getPais(idPais);
         if (pais != null) {
             
-            this.setNombre(Nombre);
-            this.setContinente(Continente);
-            this.setDescripcion(Descripcion);
+            this.setIdPais(pais.getIdPais());
+            this.setNombre(pais.getNombre());
+            this.setContinente(pais.getContinente());
+            this.setDescripcion(pais.getDescripcion());
             
             return "editaPais.xhtml";
         } else { 
